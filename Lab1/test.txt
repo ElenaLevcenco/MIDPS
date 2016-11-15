@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-Some text here.Conflict situation
-=======
-Some text here.Let's try to create conflict...
->>>>>>> sensei
+Some text here.Let's try to create conflict...first time fatality
