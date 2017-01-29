@@ -1,0 +1,41 @@
+﻿<h3 class="ng-scope">Profile</h3>
+
+<div class="container-fluid logs" ng-controller='ProfileController'>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form role="form" name="profileForm" novalidate="" ng-submit="changePass()" class="form-validate form-horizontal mb-lg">
+                <!--<div class="form-group">-->
+                    <!--<label class="col-md-3 control-label">Username</label>-->
+                    <!--<div class="col-md-9">-->
+                        <!--<input type="text" class="form-control" required="">-->
+                        <!--<span ng-show="profileForm.account_password.$error.required" class="text-danger">This field is required</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Parola actuală</label>
+                    <div class="col-md-9">
+                        <input id="id-password" type="password" name="acctual_password" ng-model="profile.password" required="" class="form-control" />
+                        <span ng-show="submitted &amp;&amp; profileForm.acctual_password.$error.required" class="text-danger">This field is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Parola nouă</label>
+                    <div class="col-md-9">
+                        <input type="password" name="new_password" ng-model="profile.new_password" required="" class="form-control" />
+                        <span ng-show="submitted &amp;&amp; profileForm.new_password.$error.required" class="text-danger">This field is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Repetă parola nouă</label>
+                    <div class="col-md-9">
+                        <input type="password" name="new_password_confirm" ng-model="profile.new_password_confirm" ui-validate="'$value==profile.new_password'" ui-validate-watch="'password'" class="form-control" />
+                        <span ng-show="profileForm.new_password_confirm.$error.validator" class="text-danger">Password does Not match</span>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-success" ng-click="submitted == true">save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

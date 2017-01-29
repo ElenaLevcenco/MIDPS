@@ -1,0 +1,81 @@
+﻿<h3 class="ng-scope">Abonați</h3>
+
+<div class="container-fluid subscribes" ng-controller='SubscribesController'>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+			<!-- <div class="form-group clearfix">
+				<div class="text-right">
+	            	<button type="button" class="btn btn-green" ng-click="new_email()">
+						New Email <em class="fa fa-plus"></em>
+					</button>
+				</div>
+			</div> -->
+
+			<div ui-grid="gridOptions" class="table-uigrid subscribe-table" style="clear: both;"></div>		
+
+			<div class="edit-email" style="display:none">
+				<form class="form-horizontal" ng-submit="saveChanges()">
+                       <input type="hidden" ng-model="edit_data.id">
+	                <div class="form-group">
+	                    <label class="col-md-4 control-label">Email</label>
+	                    <div class="col-md-8">
+	                        <input type="text" placeholder="First name" class="form-control" name="firstName" ng-model="edit_data.email" required>
+	                        <span ng-show="myForm.first_name.$error.required && submitted" class="text-danger">This field is required</span>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-md-4 col-sm-4 col-md-4 col-xs-2 control-label">Status</label>
+
+	                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-10">
+	                        <label class="switch switch-lg">
+	                            <input type="checkbox" ng-model="edit_data.active" ng-true-value="'1'" ng-false-value="'0'">
+	                            <span></span>
+	                        </label>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <div class="col-xs-12 text-right">
+	                        <button type="submit" class="btn btn-primary" ng-click="saveEmail()" ng-disabled="">Save</button>
+	                        <a ng-click="cancelEdit()" title="Cancel" class="btn btn-sm btn-danger">
+	                            Cancel
+	                        </a>
+	                    </div>
+	                </div>
+	            </form>
+			</div>	
+
+			<div class="new-email" style="display:none">
+				<form class="form-horizontal" ng-submit="saveEmail()">
+	                <div class="form-group">
+	                    <label class="col-md-4 control-label">Email</label>
+	                    <div class="col-md-8">
+	                        <input type="text" placeholder="First name" class="form-control" name="firstName" ng-model="new_data.email" required>
+	                        <span ng-show="myForm.first_name.$error.required && submitted" class="text-danger">This field is required</span>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-md-4 col-sm-4 col-md-4 col-xs-2 control-label">Status</label>
+
+	                    <div class="col-lg-8 col-sm-8 col-md-8 col-xs-10">
+	                        <label class="switch switch-lg">
+	                            <input type="checkbox" ng-model="new_data.status" ng-true-value="'1'" ng-false-value="'0'">
+	                            <span></span>
+	                        </label>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <div class="col-xs-12 text-right">
+	                        <button type="submit" class="btn btn-primary" ng-disabled="">Save</button>
+	                        <a ng-click="cancelEdit()" title="Cancel" class="btn btn-sm btn-danger">
+	                            Cancel
+	                        </a>
+	                    </div>
+	                </div>
+	            </form>
+			</div>	
+
+		</div>
+	</div>
+</div>

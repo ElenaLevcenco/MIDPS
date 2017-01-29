@@ -1,0 +1,37 @@
+<h3 class="text-center">
+    New institution
+</h3>
+<form action="" class="form-horizontal" name="institutionForm" ng-submit="saveNewInstitution(newinstitution);">
+    <div class="form-group">
+        <label class="col-md-3 control-label">Name</label>
+
+        <div class="col-md-9">
+            <input type="text" placeholder="Name" ng-model='newinstitution.name' class="form-control" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Url</label>
+
+        <div class="col-md-9">
+            <input type="url" placeholder="Url" ng-model='newinstitution.url' class="form-control" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="col-md-3 control-label">Type of Institution</label>
+
+        <div class="col-md-9">
+            <select class="form-control" ng-model='newinstitution.type' required>
+                <option value='{{type.id}}' ng-repeat='type in types'>{{type.title}}</option>
+            </select>
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <button type="submit" class="btn btn-green"  ng-disabled="!institutionForm.$valid">Save</button>
+            <button type="button" class="btn btn-danger" ng-click="closeThisDialog('button')">Cancel</button>
+        </div>
+    </div>
+</form>

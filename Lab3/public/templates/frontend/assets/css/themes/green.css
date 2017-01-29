@@ -1,0 +1,119 @@
+body,
+.pace .pace-progress{background:#FFF;}
+body,
+.timeline-content h2{color:#5c5c5c;}
+.nav-pills>li>a{color:#C2C2C2;}
+.form-control:focus{border-color:#C2C2C2;}
+.navbar-default .navbar-nav>li>a{color:#818181;}
+.slick-prev:before,
+.slick-next:before{color:#C2C2C2;}
+::-moz-selection{background:#c12e1e;color:#FFF;}
+::selection{background:#c12e1e;color:#FFF;}
+.header,
+.sub-header{color:#FFF;background-color:#c12e1e;}
+a,
+a:hover,
+a:focus,
+.speaker-info p,
+.highlighted-plan .price,
+.highlighted-plan .plan-name{color:#c12e1e;outline: none;}
+.benefit-item .benefit-icon i{color:#c12e1e;}
+.timeline::before{background:#c12e1e;}
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{color:#FFF;background-color:#c12e1e;}
+.timeline-bullet,
+.highlighted-plan{border-color:#c12e1e;}
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover{background-color:#c12e1e;}
+.btn-default{color:#c12e1e;border-color:#FFF;}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active{background-color:transparent;border-color:#FFF;color:#FFF;}
+.btn-primary{background-color:#5c5c5c;}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active{background-color:#3b3b3b;}
+.btn-success{background-color:#c12e1e;border-color:#c12e1e;}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active{background-color:#FFF;border-color:#c12e1e;color:#c12e1e;}
+.btn-outline{color:#8C8C8C;border-color:#CACACA;}
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active{background-color:transparent;border-color:#818181;color:#8C8C8C;}
+
+/*
+Modifications 04.08.2016
+*/
+
+.icon-description .fa{
+    font-size:80px;
+    padding-top:15px;
+    padding-bottom: 5px;
+}
+
+.description-icon-block h5{
+     font-weight: 600;
+}
+
+.speaker-slider.wow.fadeInUp
+{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.speakers .container{
+    padding-bottom: 30px;
+}
+
+.second-description h6{
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.second-column-img{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.second-description h6{
+    font-weight: 600;
+}
+
+.testim-icon img{
+    max-height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.slider-content h5{
+    font-weight: 600;
+}
+
+
+/*
+    Modifications 26.08.2016
+*/
+
+
+#same-height-row{
+    display: table;
+}
+#same-height-row .panel{
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}
+
+small a:hover{
+    cursor: pointer;
+}
+
+
+

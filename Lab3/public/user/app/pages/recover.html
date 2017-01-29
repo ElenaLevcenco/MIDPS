@@ -1,0 +1,33 @@
+﻿<div class="block-center mt-xl wd-xl">
+   <!-- START panel-->
+   <div class="panel panel-dark panel-flat">
+      <div class="panel-heading text-center">
+         <a href="#">
+            <img src="app/img/logo-alert.png" alt="Image" class="block-center img-rounded" style="    max-height: 40px;" />
+         </a>
+      </div>
+      <div class="panel-body">
+         <p class="text-center pv">Resetarea parolei</p>
+         <form role="form" ng-submit="recover()" name="recoverForm" novalidate="" class="form-validate">
+            <p class="text-center">Introduceți email-ul, și noi va vom trimite un link de confirmare</p>
+            <div class="form-group has-feedback">
+               <label class="text-muted">Email</label>
+               <input type="email" name="email" placeholder="Introduceți email" autocomplete="off" ng-model="recover.email" required="" class="form-control" />
+               <span class="fa fa-envelope form-control-feedback text-muted"></span>
+               <span ng-show="recoverForm.$submitted && recoverForm.email.$error.required" class="text-danger">This field is required</span>
+               <span ng-show="recoverForm.$submitted && recoverForm.email.$error.email" class="text-danger">This field must be a valid email address</span>
+            </div>
+            <button type="submit" class="btn btn-danger btn-block">Resetează</button>
+         </form>
+      </div>
+   </div>
+   <!-- END panel-->
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span ng-bind="app.year"></span>
+      <span>-</span>
+      <span ng-bind="app.name"></span>
+      <br/>
+      <span ng-bind="app.description"></span>
+   </div>
+</div>

@@ -1,0 +1,42 @@
+[
+  {
+    "text": "Dashboard" ,
+    "sref": "app.dashboard"
+  },
+  {
+    "text": "Abonați" ,
+    "sref": "app.subscribes"
+  },
+   {
+    "text": "Testimonials" ,
+    "sref": "app.testimonials"
+  },
+   {
+    "text": "Blog" ,
+    "sref": "app.blog"
+  },
+  {
+    "text": "Comentarii" ,
+    "sref": "app.comments"
+  },
+  {
+    "text": "Feed-uri" ,
+    "sref": "app.feeds"
+  },
+  {
+    "text": "Categorii de noutăți" ,
+    "sref": "app.news"
+  },
+  {
+    "text": "Postare customizată" ,
+    "sref": "app.custom-post"
+  },
+  {
+    "text": "Despre Noi" ,
+    "sref": "app.about-us"
+  }, 
+  {
+    "text": "Loguri" ,
+    "sref": "app.logs"
+  }
+]

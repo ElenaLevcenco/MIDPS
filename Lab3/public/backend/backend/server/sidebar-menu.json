@@ -1,0 +1,22 @@
+[
+  {
+    "text": "Dashboard" ,
+    "sref": "app.dashboard"
+  },
+  {
+    "text": "Subscribes" ,
+    "sref": "app.subscribes"
+  },
+  {
+    "text": "Feeds" ,
+    "sref": "app.feeds"
+  },
+  {
+    "text": "News Categories" ,
+    "sref": "app.news"
+  },
+  {
+    "text": "Logs" ,
+    "sref": "app.logs"
+  }
+]

@@ -1,0 +1,146 @@
+﻿<div class="row news">
+   <!-- Blog Content-->
+   <div class="col-lg-12">
+      
+       <div class="row abs articles">
+          
+           <button class="btn col-md-2 types pull-right" ng-show="!none" ng-class="selectedType == 2?'btn-blue':'btn-default'" ng-click="showType(2)">Local</button>
+           <button class="btn col-md-2 types pull-right" ng-show="!none" ng-class="selectedType == 1?'btn-blue':'btn-default'" ng-click="showType(1)">Național</button>
+            <div class="clearfix"></div>
+           
+         <div class="loader-demo">
+            <div class="line-scale-pulse-out pulse-load red-line">
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+               <div></div>
+            </div>
+         </div>
+         <div class="" ng-show="none" style="text-align: center;background: #fff;padding: 20px;">
+            Nu sunt articole
+         </div>
+
+
+         <!-- Posts column 1 National Type-->
+         <div class="row no-margin" ng-show="selectedType == 1">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12" ng-repeat="article in news |filter:filterNational">
+               <div class="panel">
+                  <div class="panel-body">
+                     <p class="clearfix">
+                     <span class="pull-left">
+                        <small class="mr-sm">de <a href="">{{article.name}}</a>
+                        </small>
+                     </span>
+                     <span class="pull-right">
+                        <small class="mr-sm">{{article.published}}</small>
+                     </span>
+                     </p>
+                     <h4>
+                        <!--<a href="{{'#app/article/' + article.article_id}}" >{{article.title}}</a>-->
+                        <a href="javascript:;" ng-click="show_article($event)" data-id="{{article.article_id}}" >{{article.title | words:13 }}</a>
+                     </h4>
+                     <p>{{article.description | words:25}}</p>
+
+                     <a href="{{'#app/article/' + article.article_id}}" ng-if="article.file_path" class="">
+                        <img src="{{article.file_path}}" alt="" class="img-responsive">
+                     </a>
+
+                     <div class="read-more text-right">
+                        <a href="javascript:;" ng-click="show_article($event)" data-id="{{article.article_id}}" class="red">Citește mai mult</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         
+         
+         
+         
+         
+         <div class="row no-margin" ng-show="selectedType == 2">
+            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12" ng-repeat="article in news |filter:filterLocal">
+               <div class="panel">
+                  <div class="panel-body">
+                     <p class="clearfix">
+                     <span class="pull-left">
+                        <small class="mr-sm">de <a href="">{{article.name}}</a>
+                        </small>
+                     </span>
+                     <span class="pull-right">
+                        <small class="mr-sm">{{article.published}}</small>
+                     </span>
+                     </p>
+                     <h4>
+                        <!--<a href="{{'#app/article/' + article.article_id}}" >{{article.title}}</a>-->
+                        <a href="javascript:;" ng-click="show_article($event)" data-id="{{article.article_id}}" >{{article.title | words:13 }}</a>
+                     </h4>
+                     <p>{{article.description | words:25}}</p>
+
+                     <a href="{{'#app/article/' + article.article_id}}" ng-if="article.file_path" class="">
+                        <img src="{{article.file_path}}" alt="" class="img-responsive">
+                     </a>
+
+                     <div class="read-more text-right">
+                        <a href="javascript:;" ng-click="show_article($event)" data-id="{{article.article_id}}" class="red">Citește mai mult</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         
+      </div>
+       
+       
+       
+       
+       
+      <!--end articles-->
+      <div class="row abs article" style="display: none;">
+         <div class="col-lg-12">
+            <div class="panel panel-default">
+               <div class="panel-heading">
+                  <a href="javascript:;" ng-click="show_articles()"  class="pull-right">
+                     <i class="fa fa-arrow-left fa-2x red "></i>
+                  </a>
+                  <div class="bb">
+                     <h2 class="text-md">{{ article.title }}</h2>
+                     <p class="clearfix">
+                  <span class="pull-left">
+                     <small class="mr-sm">De <a href="">{{ article.name }}</a>
+                     </small>
+                     <small class="mr-sm">{{ article.published }}</small>
+                  </span>
+                     </p>
+                  </div>
+               </div>
+               <div class="panel-body">
+                  <div ng-if="article.file_path">
+                     <img src="/{{article.file_path}}" class="img-responsive" />
+                  </div>
+                  <br/>
+                  <p ng-if="article.description" ng-bind-html="article.description">
+                  </p>
+                  <hr/>
+                  <div role="group" aria-label="..." class="btn-group">
+                     <button social-facebook custom-url="{{ article.url }}" title="Share this webpage on Facebook" class="btn btn-default">
+                        <em class="fa fa-facebook text-muted"></em>
+                     </button>
+                     <button social-twitter custom-url="{{ article.url }}" class="btn btn-default">
+                        <em class="fa fa-twitter text-muted"></em>
+                     </button>
+                     <button social-gplus custom-url="{{ article.url }}" class="btn btn-default">
+                        <em class="fa fa-google-plus text-muted"></em>
+                     </button>
+                  </div>
+                  <div class="text-right display-inlineb" style="float: right;">
+                     Sursa: <a ng-href="{{ article.url }}" target="_blank" class="red"> {{ article.url | characters: 25 }}</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

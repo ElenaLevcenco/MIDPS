@@ -1,0 +1,1 @@
+INSERT INTO `users` VALUES ('237', '0', 'Daniel Musteata', '955189027856007', 'danwebdeveloper@yahoo.com', null, '2015-08-20 17:59:20');

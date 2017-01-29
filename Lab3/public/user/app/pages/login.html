@@ -1,0 +1,72 @@
+﻿<div class="block-center mt-xl wd-xl">
+   <!-- START panel-->
+   <div class="panel panel-dark panel-flat">
+      <div class="panel-heading text-center">
+         <a href="#">
+            <img src="app/img/logo-alert.png" alt="Image" class="block-center img-rounded" style="max-height: 40px;" />
+         </a>
+      </div>
+      <div class="panel-body">
+         <p class="text-center pv">Conectați-vă pentru a continua.</p>
+         <form role="form" ng-submit="login()" name="loginForm" novalidate class="form-validate mb-lg">
+            <div class="form-group has-feedback">
+               <input id="user" type="email" name="userName" placeholder="Email" ng-model="userName" required class="form-control" />
+               <span class="fa fa-user form-control-feedback text-muted"></span>
+               <span ng-show="loginForm.userName.$dirty && loginForm.userName.$error.required && loginForm.submitted" class="text-danger">Email is required</span>
+               <span ng-show="loginForm.email.$dirty && loginForm.email.$error.email && loginForm.submitted" class="text-danger">This field must be a valid email address</span>
+            </div>
+            <div class="form-group has-feedback">
+               <input id="pass" type="password" name="password" placeholder="Password" ng-model="password" required class="form-control" />
+               <span class="fa fa-lock form-control-feedback text-muted"></span>
+               <span ng-show="loginForm.password.$dirty &amp;&amp; loginForm.password.$error.required" class="text-danger">Password is required</span>
+            </div>
+            <div class="clearfix">
+               <div class="checkbox c-checkbox pull-left mt0">
+                  <label>
+                     <input type="checkbox" value="" name="account_remember" ng-model="account.remember" />
+                     <span class="fa fa-check"></span>Ține-mă minte</label>
+               </div>
+               <div class="pull-right"><a ui-sref="page.recover" class="text-muted">Ați uitat parola?</a>
+               </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label>Captcha*</label>
+                <div
+                vc-recaptcha
+                key="'6LdeEgkUAAAAAAGi_lInW9DWf_63NdDcU9JEkaEU'"
+                ></div>
+                <div re-captcha ng-model="captcha"></div>
+              </div> 
+            <button type="submit" class="btn btn-block btn-red mt-lg" ng-disabled="!loginForm.$valid">Logare</button>
+         
+            <a class="btn btn-block btn-social btn-facebook" type="button" ng-click="doLoginFb()"><span class="fa fa-facebook"></span> Intră în cont cu Facebook</a>
+<!--            <button class="btn btn-block btn-red mt-lg" id="myGsignin" type="button" >Logare Google</button>-->
+
+<google-plus-signin  customtargetid="google-auth" clientid="756312042080-fj49hgg4fl60vhmd5b2p8unfcp42lsv3" autorender="false">
+    
+    <a id="google-auth" class="btn btn-block btn-social btn-google" type="button" ><span class="fa fa-google"></span> Intră în cont cu Google</a>
+    
+</google-plus-signin>
+        
+         </form>
+         <div ng-show="wrongCredentials" class="alert alert-danger text-center">
+            {{ wrongCredentials }}
+         </div>
+         <div ng-show="requestError" class="alert alert-danger text-center">
+            Request Error
+         </div>
+         <p class="pt-lg text-center">Ai nevoie de Înregistrare ?</p>
+         <a ui-sref="page.register" class="btn btn-block btn-default">Înregistrează-te acum</a>
+
+      </div>
+   </div>
+   <!-- END panel-->
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span ng-bind="app.year"></span>
+      <span>-</span>
+      <span ng-bind="app.name"></span>
+      <br/>
+      <span ng-bind="app.description"></span>
+   </div>
+</div>

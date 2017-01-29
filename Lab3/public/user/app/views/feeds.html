@@ -1,0 +1,64 @@
+﻿<h3>
+    Feeduri
+</h3>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Feeduri selectate</div>
+            <div class="panel-body" style="position: relative;overflow: hidden;">
+                <div class="loader-demo">
+                    <div class="line-scale-pulse-out pulse-load red-line">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12 clearfix">
+                        <input id="selectAll" type="checkbox" class="css-checkbox" ng-model="selectedAll" ng-true-value="1" ng-false-value="0" ng-click="checkAll()">
+
+                        <label for="selectAll" class="css-label">Selectează / Deselectează toate instituțiile:
+                        </label>
+                        
+                  <button class="btn col-md-2 types pull-right" ng-class="selectedType == 2?'btn-blue':'btn-default'" ng-click="showType(2)">Local</button>
+                  <button class="btn col-md-2 types pull-right" ng-class="selectedType == 1?'btn-blue':'btn-default'" ng-click="showType(1)">Național</button>
+                    
+                    
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    
+                    
+                    
+                    <div class="checkbox-itm col-sm-6 col-md-4" ng-show="selectedType == 1" ng-repeat="item in subscribeData " ng-if="item.type == 1">
+                        <input type="checkbox" name="checkboxG{{$index + 1}}" id="checkboxG{{$index + 1}}"
+                               class="css-checkbox"
+                               ng-model="opts[item.id]"
+                               ng-true-value="1" ng-false-value="0" />
+                        <label for="checkboxG{{$index + 1}}" class="css-label">{{ item.name }}</label>
+                    </div>
+                    
+                    
+                    <div class="checkbox-itm col-sm-6 col-md-4" ng-show="selectedType == 2" ng-repeat="item in subscribeData " ng-if="item.type == 2">
+                        <input type="checkbox" name="checkboxG{{$index + 1}}" id="checkboxG{{$index + 1}}"
+                               class="css-checkbox"
+                               ng-model="opts[item.id]"
+                               ng-true-value="1" ng-false-value="0" />
+                        <label for="checkboxG{{$index + 1}}" class="css-label">{{ item.name }}</label>
+                    </div>
+                    
+                </div>
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-red" ng-click="saveFeeds()" ng-disabled="btnClicked">Salveaza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

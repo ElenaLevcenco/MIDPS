@@ -1,0 +1,34 @@
+{
+    "name": "Iulian Ciobanu",
+    "description": "RESTful API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Iulian Ciobanu",
+            "email": "iulian.ciobanu@ebs.md"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "slim/slim": "2.6.0",
+        "slim/extras": "*",
+        "slim/middleware": "*",
+        "monolog/monolog": "*",
+        "j4mie/paris": "*",
+        "flynsarmy/slim-monolog": "*",
+        "lootils/uuid": "1.x",
+        "crada/php-apidoc": "@dev",
+        "parse/php-sdk": "^1.1",
+        "respect/validation": "^0.9.3",
+        "swiftmailer/swiftmailer": "^5.4",
+        "phpfastcache/phpfastcache": "^3.0"
+    },
+    "archive": {
+        "exclude": ["vendor", ".DS_Store", "*.log"]
+    },
+    "autoload": {
+        "psr-0": {
+            "API": "lib/"
+        }
+    }
+}

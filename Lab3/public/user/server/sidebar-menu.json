@@ -1,0 +1,17 @@
+[
+  {
+    "text": "Noutăți",
+    "sref": "app.blog",
+    "icon": "icon-grid"
+  },
+  {
+    "text": "Profil",
+    "sref": "app.profile",
+    "icon": "icon-user"
+  },
+  {
+    "text": "Feed-uri",
+    "sref": "app.feeds",
+    "icon": "icon-feed"
+  }
+]

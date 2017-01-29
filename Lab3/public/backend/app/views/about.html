@@ -1,0 +1,21 @@
+<h3 class="ng-scope">Despre Noi</h3>
+
+<div class="container-fluid subscribes" ng-controller='AboutController'>
+
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <form class="form-horizontal" ng-submit="update()">
+                <div class="form-group" ng-repeat="content in about">
+                    <div text-angular="text-angular" ng-model="content.value" ></div>
+                </div>
+
+
+
+                <button class="btn btn-primary pull-right">Salvează</button>
+            </form>
+
+        </div>
+    </div>
+</div>

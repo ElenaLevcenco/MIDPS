@@ -1,0 +1,106 @@
+﻿<h3 class="ng-scope">Testimonials</h3>
+
+<div class="container-fluid subscribes" ng-controller='TestimonialsController'>
+    
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+
+                        
+	<div ui-grid="gridOptions" class="table-uigrid subscribe-table" style="clear: both;">   
+            <button class="btn btn-success pull-right" style="margin-right:30px;margin:10px;" ng-click="showInsertTestimonials()">Add</button>
+        </div>	
+
+                        <div class="edit-testimonial" style="display:none">
+                            <form class="form-horizontal" ng-submit="saveChanges()">
+                                <input type="hidden" ng-model="edit_data.id">
+                               
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" placeholder="Name" class="form-control" name="firstName" ng-model="edit_data.name" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Content</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control"  ng-model="edit_data.content" required></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Position</label>
+                                    <div class="col-md-8">
+                                        <input type="number"  class="form-control" name="position" ng-model="edit_data.position" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Image</label>
+                                    <div class="col-md-2">
+                                        <img class="img-responsive img-circle" ng-src="{{uploads_folder+edit_data.image}}">
+                                        <input type="file" name="photo"  onchange="angular.element(this).scope().uploadFile(this.files)"> 
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-xs-12 text-right">
+                                        <button type="submit" class="btn btn-primary" ng-click="updateTestimonial()" ng-disabled="">Save</button>
+                                        <a ng-click="cancelEdit()" title="Cancel" class="btn btn-sm btn-danger">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>	
+
+                        <div class="new-testimonial" style="display:none">
+                            <form class="form-horizontal" >
+                                
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Name</label>
+                                        <div class="col-md-8 col-md-offset-4">
+                                            <input type="text"  class="form-control" name="position" ng-model="insert.name" required>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Content</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control"  ng-model="insert.content" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Position</label>
+                                    <div class="col-md-8">
+                                        <input type="number" class="form-control" ng-model="insert.position">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Image</label>
+                                    <div class="col-md-2">
+                                        <img class="img-responsive img-circle" ng-src="{{uploads_folder+edit_data.image}}">
+                                        <input type="file" name="photo"  onchange="angular.element(this).scope().uploadFile(this.files)"> 
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-xs-12 text-right">
+                                        <button type="submit" class="btn btn-primary" ng-click="insertTestimonials()" ng-disabled="">Save</button>
+                                        <a ng-click="cancelInsert()" title="Cancel" class="btn btn-sm btn-danger">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>          
+
+
+                            </form>
+                        </div>	
+
+		</div>
+	</div>
+</div>

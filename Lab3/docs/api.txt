@@ -1,0 +1,201 @@
+Codul sursa ale API-ului
+// la toate requasturile din API s-a folosit priincipiul REST-full API, adica fiecare tip de request indeplineste functia sa
+//get - obtinerea datelor
+//post - crearea datelor
+//put - actualizarea datelor
+//delete - stergerea datelor
+//parsarea feedulrilor se apaleaza in fiecare 10 minute pentru a actualiza permanent baza cu articole noi
+//in baza vor fi incluse sursele cu referinta la RSS a sursei
+public function parseFeed($config)
+{
+    $updated = STATUS_NO_CHANGES;
+    $allFeeds = \ORM::for_table('feeds')->raw_query('SELECT * FROM feeds WHERE xml_str_length != 0 ORDER BY scan_date ASC LIMIT 5')
+        ->find_many();
+    foreach ($allFeeds as $feed) {
+        $feed->set('scan_date', date('Y-m-d H:i:s'))->save();
+        $feeds = helpers\httpRequest($feed->url);
+            $hash = sha1($feeds);
+            if (ApiInput::validateFeed($feed->url) && $feed->xml_str_length != strlen($feeds)) {
+                $doc = new \SimpleXmlElement($feeds, LIBXML_NOCDATA);
+                if ($doc) {
+                    foreach ($doc->channel->item as $item) {
+                        $desc = ApiInput::rip_tags(helpers\set_var($item->description, $item->title), 5000, false);
+                        //check if article is new
+                        if (!\helpers\moreThan24h($item->pubDate)) {
+                            $description = html_entity_decode($desc);
+                            if(empty($description)){
+                                $description = $item->title;
+                            }
+                            $title = ApiInput::rip_tags($item->title, 300 , false);
+                            //raw query issue with idiOrm, switching to pdo
+                            //insert unique urls
+                            $title = html_entity_decode(helpers\set_var($title));
+                            $response = \ORM::get_db()
+                                ->prepare("INSERT INTO articles
+                                     (title,url,description,published) VALUES (:title,:url,:description,:published)
+                                     ON DUPLICATE KEY UPDATE
+                                     id = id")
+                                ->execute(array(
+                                    'title' => $title,
+                                    'url' => helpers\set_var($item->link),
+                                    'description' => $description,
+                                    'published' => strftime("%Y-%m-%d %H:%M:%S", strtotime(helpers\set_var($item->pubDate)))));
+                            $article_id = \ORM::get_db()->lastInsertId();
+
+                            if($article_id){
+                                \ORM::for_table('article_feeds')->create()
+                                    ->set('article_id',$article_id)
+                                    ->set('feed_id',$feed->id)
+                                    ->save();
+                            }
+
+                            //save article to assigned users
+                            if ($article_id) {
+                                $user_institutions = \ORM::for_table('user_institutions')
+                                    ->join('institutions', array('user_institutions.institution_id', '=', 'institutions.id'))
+                                    ->join('feeds', array('user_institutions.institution_id', '=', 'institutions.id'))
+                                    ->where('feeds.id', $feed->id)
+                                    ->group_by('user_institutions.user_id')
+                                    ->find_array();
+
+                                //search for existing
+                                $usersArticles = \ORM::for_table('user_articles')->table_alias('ua')
+                                    ->join('article_feeds',['af.article_id','=','ua.article_id'],'af')
+                                    ->join('feeds',['f.id','=','af.feed_id'],'f')
+                                    ->where('f.id',$feed->id)
+                                    ->find_array();
+
+                                if(!empty($user_institutions)){
+                                    $pdo = \ORM::get_db();
+                                    $sql = 'INSERT INTO user_articles ( user_id, article_id ) VALUES ';
+
+                                    foreach($user_institutions as $key => $value){
+
+                                        $response = $this->userHaveArticle($usersArticles,$value['user_id'],$article_id);
+                                        if(!$response){
+                                            $sql .= '( '.$value['user_id'].', '.$article_id.' ), ';
+                                        }
+                                    }
+                                    $sqlQuery = substr($sql, 0, -2);
+                                    $statement = $pdo->prepare($sqlQuery);
+                                    $statement->execute();
+                                }
+                                $updated = STATUS_UPDATED;
+                            }
+                        }
+                    }
+                } else {
+                    $updated = STATUS_NO_CHANGES;
+                    ApiResult::setCode(0);
+                }
+                $saved[] = ['feed' => $feed->url, 'status' => $updated];
+            }
+            //update the channel data in database including the new hash value
+            $feed->set('xml_hash', $hash)
+                ->set('xml_str_length', strlen($feeds))
+                ->set('scan_date', date('Y-m-d H:i:s'))
+                ->save();
+    }
+    //cleanup
+    $this->deleteExpiredArticle();
+
+    //IF have Updates
+    if($updated){
+        //$data = array("alert" => "Official Alert Actualizari!");
+        $users = \ORM::for_table('user_settings')
+            ->select(array('user_settings.*'))
+            ->join('users', 'users.id = user_settings.user_id')
+            ->where('users.push_notify', 1)
+            ->where('user_settings.type', USER_ANDROID)
+            ->find_many();
+
+        if($users)
+            foreach ($users as $user) {
+                $data = [
+                    'where' => ['userID' => (int) $user->user_id],
+                    'data' => [
+                        'alert' => 'Actualizari Official Alert.',
+                        'badge' => 'Increment',
+                        'sound' => 'default'
+                    ]
+                ];
+                $this->toUser($data, $config);
+            }
+    }
+    if (!empty($saved)) {
+        ApiResult::setData($saved);
+    } else {
+        ApiResult::setMessage('No new feeds');
+    }
+    return;
+}
+//Obtinearea tuturor feedurilor si a institutiilor lor
+public function getFeeds()
+{
+    $feeds = \ORM::for_table('feeds')->select(array('id', 'url', 'scan_date', 'institution_id'))->find_array();
+    if ($feeds) {
+        foreach ($feeds as &$feed) {
+            $feed['institution'] = \ORM::for_table('institutions')->find_one($feed['institution_id'])->as_array();
+            unset($feed['institution_id']);
+        }
+    }
+    ApiResult::setData($feeds);
+}
+//actializarea profilului utilizatorului, ca parametri ai reqestului trebue introduse datele utilizatorului
+//put 
+public function updateUserProfile($put)
+{
+    $user = \ORM::for_table('users')->where('id',$this->user->id)->find_one();
+
+    if(!empty($put['first_name'])) $user->set('first_name',$put['first_name']);
+    if(!empty($put['surname'])) $user->set('surname',$put['surname']);
+    if(!empty($put['address'])) $user->set('address',$put['address']);
+    if(!empty($put['phone'])) $user->set('phone',$put['phone']);
+    if(isset($put['email_notify'])) $user->set('email_notify',(int)$put['email_notify']);
+    return $user->save();
+}
+//crearea articolelor di backend
+//va trebui de introdus feedul din care este articolul si datele necesare pentru crearea articolului(descriere, fisiere, etc.)
+public function createArticle($post, $feedsId)
+{
+    $query = \ORM::for_table('articles')->create()
+        ->set('title',$post['title'])
+        ->set('url',$post['url']);
+        isset($post['description']) && $query->set('description',$post['description']);
+        if(array_key_exists('file',$post)){
+            $file = json_decode($post['file']);
+            $fileName = uniqid();
+            $filePath = $_SERVER['DOCUMENT_ROOT'].'/../share/files/'.$fileName.'.'.$file->type;
+            file_put_contents($filePath, base64_decode($file->base64));
+            $query->set('file_path', 'images/file/?file_name='.$fileName.'.'.$file->type);
+        }
+    $saed = $query->save();
+    $articleId = \ORM::get_db()->lastInsertId('id');
+    foreach ($feedsId as $feedId) {
+        \ORM::for_table('article_feeds')->create()
+            ->set('article_id',$articleId)
+            ->set('feed_id',$feedId)
+            //->set('article_type',2)
+            ->save();
+    }
+    $users = \ORM::for_table('users')->table_alias('u')
+        ->join('user_settings',['u.id','=','us.user_id'],'us')
+        ->join('user_institutions',['u.id','=','ui.user_id'],'ui')
+        ->join('feeds',['f.institution_id','=','ui.institution_id'],'f')
+
+        ->where_in('f.id',$feedsId)
+        ->where_not_equal('us.type',3)
+        ->group_by('us.user_id')
+        ->find_array();
+    foreach ($users as $user) {
+        \ORM::for_table('user_articles')->create()
+            ->set('user_id',$user['user_id'])
+            ->set('article_id',$articleId)
+            ->set('email_sent',0)
+            ->save();
+    }
+    if($saved){
+        return true;
+    }
+    return false;
+}

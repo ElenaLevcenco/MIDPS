@@ -1,0 +1,101 @@
+﻿<h3 class="ng-scope">Feed-uri</h3>
+
+<div class="container-fluid subscribes" ng-controller='FeedsController'>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="form-group clearfix">
+                
+                <button class="btn col-md-2 col-xs-12" style="margin-right: 10px;margin-bottom: 10px;" ng-class="selectedType == 1?'btn-blue':'btn-default'" ng-click="changeType(1);">Național</button>
+                <button class="btn col-md-2 col-xs-12" ng-class="selectedType == 2?'btn-blue':'btn-default'" ng-click="changeType(2);">Local</button>
+                
+                <div class="text-right ">
+                    <button type="button" class="btn btn-green" ng-click="new_feed()">
+                        Feed nou <em class="fa fa-plus"></em>
+                    </button>
+                </div>
+            </div>
+
+            <div ui-grid="gridOptions" ui-grid-pagination class="table-uigrid feeds-table" style="clear: both;"></div>
+
+            <div class="edit-feed" style="display:none">
+                <form class="form-horizontal  col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"
+                       name="editFeedForm">
+                       <input type="hidden" ng-model="edit_data.user_id">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Feed Url</label>
+
+                        <div class="col-md-8">
+                            <input type="url" placeholder="Url" class="form-control" name="firstName"
+                                   ng-model="edit_data.url" required>
+                            <span ng-show="myForm.first_name.$error.required && submitted" class="text-danger">
+                                Acest cîmp este obligatoriu
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Instituții</label>
+
+                        <div class="col-md-8">
+                            <select ng-model="edit_data.institution_id"
+                                    ng-options="state as state.name for state in states"
+                                    width="'100%'"
+                                    class="chosen-select input-md" required>
+                                <option value="" ng-model="edit_data.institution_id" ></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-primary" ng-click="saveChanges()"
+                                    ng-disabled="!editFeedForm.$valid">Salvează
+                            </button>
+                            <a ng-click="cancelEdit()" title="Cancel" class="btn btn-sm btn-danger">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    <!-- end edit-feed -->
+
+            <div class="new-feed" style="display:none">
+                <form class="form-horizontal col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2" ng-submit="saveFeed(new_data)"
+                      name="feedForm">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Instituții</label>
+
+                        <div class="col-md-8">
+
+                            <select ng-model="new_data.institution"
+                                    ng-options="state as state.name for state in states"
+                                    width="'100%'"
+                                    class="chosen-select input-md" required>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Feed Url</label>
+
+                        <div class="col-md-8">
+                            <input type="url" placeholder="Url" class="form-control" name="url"
+                                   ng-model="new_data.url" required>
+                            <span ng-show="feedForm.url.$error.required && submitted" class="text-danger">Acest cîmp este obligatoriu</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-primary" ng-disabled="!feedForm.$valid">Salvează</button>
+                            <a ng-click="cancelEdit()" title="Cancel" class="btn btn-danger">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    <!-- end new-feed -->
+        </div>
+    </div>
+</div>

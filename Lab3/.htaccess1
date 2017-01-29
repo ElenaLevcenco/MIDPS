@@ -1,0 +1,7 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^official-alert.devebs.net [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.official-alert.devebs.net/$
+
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
