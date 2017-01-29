@@ -8,5 +8,5 @@
 -rezolvarea conflictelor a 2 branches(guru,sensei)<br>
 
 #Raport:
--Latex (<a href="https://github.com/ElenaLevcenco/MIDPS/blob/master/Lab1/docs/main.tex">linkul</a>)
+-Latex (<a href="https://github.com/ElenaLevcenco/MIDPS/blob/master/Lab1/docs/main.tex">linkul</a>)<br>
 -PDF (<a href="https://github.com/ElenaLevcenco/MIDPS/blob/master/Lab1/docs/raport.pdf">linkul</a>)
