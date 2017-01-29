@@ -1,0 +1,11 @@
+<ion-view>
+	<ion-nav-title></ion-nav-title>
+	<ion-nav-buttons side="left">
+      	<button class="button button-clear back-button" ng-click="goBack()"><i class="ion-arrow-left-c"></i> <span>înapoi</span></button>
+    </ion-nav-buttons>
+	<ion-content class="has-header" overflow-scroll="true">
+    	<ion-list>
+		  	<ion-checkbox class="checkbox-assertive" ng-repeat="institution in institutions" ng-model="institution.selected" ng-true-value="1" ng-false-value="0" ng-change="changeInstitutionStatus(institution)">{{ institution.name }}</ion-checkbox>
+		</ion-list>
+    </ion-content>
+</ion-view>

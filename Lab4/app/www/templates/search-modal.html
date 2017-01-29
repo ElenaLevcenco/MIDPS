@@ -1,0 +1,13 @@
+<ion-modal-view class="search-modal" style="background-color:rgba(0, 0, 0, 0.5)">
+    <div class="bar bar-header item-input-inset">
+    	<img src="img/search-logo.png" class="search-logo">
+	  	<label class="item-input-wrapper">
+	    	<i class="icon ion-ios-search placeholder-icon"></i>
+	    	<input type="search" placeholder="Caută" id="searchText" ng-model="searchText.text">
+	  	</label>
+	  	<button class="button button-clear" style="color:#333" ng-click="searchNews()">Search</button>
+	</div>
+    <ion-content class="search-modal-content has-header" ng-click="closeSearch()">
+      	
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,124 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+.loading-container{
+	.loading{
+		background-color: transparent;
+	}
+}
+
+.right-align{
+	text-align: right;
+}
+
+.news-list{
+	.list{
+		overflow: hidden;
+	}
+	.news-item{
+		
+		.institution{
+			margin-bottom: 7px;
+			font-size: 13px;
+		}
+		.description{
+			font-size: 12px;
+    		color: #777;
+		}
+	}
+
+	h2.not-visited{
+		font-weight: 700;
+	}
+}
+
+.bar-header .buttons button.button-clear{
+	padding: 0px 10px;
+	i{
+		font-size: 30px;
+	}
+}
+
+.bar-header .buttons button.button-clear.button-popup{
+	padding: 0px 20px 0px 15px;
+}
+
+.bar-header .buttons button.button-clear.button-refresh i{
+    font-size: 34px;
+}
+
+.tabs .icon{
+	font-size: 30px;
+	padding-top: 4px;
+}
+
+.logo-image{
+	padding-top: 5px;
+    height: 39px;
+}
+
+.settings-popup{
+	height: 230px;
+	.settings-popup-content{
+		overflow: hidden;
+		.item{
+			font-size: 15px;
+		}
+	}
+}
+
+.search-modal{
+	.search-logo{
+		margin-right: 10px;
+    	width: 27px;
+	}
+}
+
+.news-detail{
+	.item-header{
+		h2{
+			font-size: 13px;
+		}
+		p{
+			font-size: 12px;
+			color: #777;
+		}
+	}
+	.item-description{
+		font-size: 12px;
+	}
+	.news-reference{
+		width: 100%;
+		color: #ef473a;
+		text-decoration: none;
+	}
+}
+
+.buttons-left .back-button span{
+	display: inline-block;
+    vertical-align: top;
+    padding-top: 1px;
+    padding-left: 5px;
+    font-size: 17px;
+
+}

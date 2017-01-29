@@ -1,0 +1,29 @@
+<ion-view>
+    <ion-nav-buttons side="primary">
+        <button class="button button-clear button-refresh" ng-click="updateNews()">
+            <i class="ion-ios-refresh-empty"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-clear button-search" ng-click="openSearch()">
+            <i class="ion-ios-search"></i>
+        </button>
+        <button class="button button-clear button-popup" ng-click="setActiveTab();popover.show($event);">
+            <i class="ion-android-more-vertical"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content overflow-scroll="true">
+        <ion-list class="news-list">
+            <ion-item class="item-remove-animate item-text-wrap item-icon-right news-item" ng-repeat="news in newsObj | filter:searchText.text" type="item-text-wrap" href="#/tab/news/{{currentCategoryName}}/{{news.id}}" ng-click="visitNews(news)">
+                <h2 class="institution" ng-class="news.visited == '0' ? 'not-visited' : ''">{{news.institution.name}}</h2>
+                <p class="description">{{news.title | limitTo : 100}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+                <ion-option-button class="button-assertive" ng-click="openNews(news)">
+                    Vizitează
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

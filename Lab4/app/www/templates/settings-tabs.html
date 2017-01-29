@@ -1,0 +1,9 @@
+<ion-tabs class="tabs-striped tabs-color-active-assertive" ng-controller="SettingsCtrl">
+    <ion-tab title="Naționale" href="#/settings/national" on-select="updateInstitutions()">
+        <ion-nav-view name="tab-settings-national"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Locale" href="#/settings/local" on-select="updateInstitutions()">
+        <ion-nav-view name="tab-settings-local"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

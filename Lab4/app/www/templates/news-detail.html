@@ -1,0 +1,51 @@
+<ion-view>
+    <ion-nav-title></ion-nav-title>
+
+    <ion-content class="has-header news-detail" overflow-scroll="true">
+        <div class="list card">
+            <div class="item item-header">
+                <h2>{{news.institution.name}}</h2>
+                <div class="row">
+                    <div class="col col-50"><p>{{ news.passedTimeText }}</p></div>
+                    <div class="col col-50"><p class="right-align">{{ currentCategoryTitle }}</p></div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap">
+                <div class="item-description" ng-bind-html="news.description">
+                    
+                </div>
+
+                <div class="row">
+                    <a ng-click="openSource(news)" class="news-reference">Citește mai mult</a>
+                </div>
+            </div>
+
+            <div class="item item-body">
+                
+                <div class="row">
+                    <div class="col col-20"> 
+                        <a ng-click="doFacebookShare(news)" style="display:block;">
+                            <img src="img/facebook-logo.png" width="100%">
+                        </a>
+                    </div>
+
+                    <div class="col col-20"> </div>
+
+                    <div class="col col-20"> 
+                        <a ng-click="doTwitterShare(news)" style="display:block;">
+                            <img src="img/twitter-logo.png" width="100%">
+                        </a>
+                    </div>
+
+                    <div class="col col-20"> </div>
+                    <div class="col col-20"> 
+                        <a ng-click="doGoogleShare(news)" style="display:block;">
+                            <img src="img/google-logo.png" width="100%">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

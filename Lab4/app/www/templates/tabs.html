@@ -1,0 +1,9 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-assertive" ng-class="{'tabs-item-hide':hideTabs}">
+    <ion-tab title="Naționale" icon-off="ion-ios-world-outline" icon-on="ion-ios-world" href="#/tab/news/national" on-select="updateNews()">
+        <ion-nav-view name="tab-news-national"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Locale" icon-off="ion-ios-location-outline" icon-on="ion-ios-location" href="#/tab/news/local" on-select="updateNews()">
+        <ion-nav-view name="tab-news-local"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

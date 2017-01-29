@@ -1,0 +1,10 @@
+<ion-popover-view class="settings-popup">
+    <ion-content class="settings-popup-content">
+        <div class="list">
+        	<ion-item ng-click="visitAllNews()" href>Marchează ca citit</ion-item>
+        	<ion-item ng-click="popover.hide()"  href="#/about-us">Despre Noi</ion-item>
+        	<ion-item ng-click="popover.hide()" href="#/settings/national">Setări</ion-item>
+            <ion-toggle ng-model="user.push_notify" ng-true-value="'1'" ng-change="changePushNotify()" ng-false-value="'0'" toggle-class="toggle-assertive">Push-notificări</ion-toggle>
+        </div>
+    </ion-content>
+</ion-popover-view>
